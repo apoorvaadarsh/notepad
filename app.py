@@ -102,7 +102,7 @@ def replace():
                  
                  
 l = ln.LineNumbers(root, text, width=1)
-l.pack(side=tk.RIGHT)
+l.pack(fill='y', side=tk.LEFT)
 text.pack(expand=True, fill='both')
 Find.config(command = find)
 findExactButton.config(command = findExact)
