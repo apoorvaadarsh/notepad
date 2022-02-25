@@ -36,7 +36,7 @@ fram.pack(side = TOP)
 text = Text(root)
  
 text.insert('1.0', '''Type your text here''')
-text.pack(side = BOTTOM)
+# text.pack(side = BOTTOM)
 
 #find function
 def find():
@@ -103,7 +103,7 @@ def replace():
                  
 l = ln.LineNumbers(root, text, width=1)
 l.pack(side=tk.RIGHT)
-text.pack(side=tk.RIGHT, expand=1)
+text.pack(expand=True, fill='both')
 Find.config(command = find)
 findExactButton.config(command = findExact)
 replaceButton.config(command = replace)
