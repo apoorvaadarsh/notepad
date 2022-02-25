@@ -24,6 +24,12 @@ edit2.focus_set()
  
 findExactButton = Button(fram, text = 'Find Exact')
 findExactButton.pack(side = LEFT)
+
+edit3 = Entry(fram)
+edit3.pack(side = LEFT, fill = BOTH, expand = 1)
+edit3.focus_set()
+replaceButton=Button(fram,text='Replace')
+replaceButton.pack(side=RIGHT)
  
 fram.pack(side = TOP)
  
@@ -72,11 +78,33 @@ def findExact():
         text.tag_config('found', foreground ='red')
     textpad.focus_set()
 
+def replace():
+    text.tag_remove('found', '1.0', END)
+    s = textpad.get()
+    r = edit3.get()
+     
+    if (s and r):
+        idx = '1.0'
+        while 1:
+            idx = text.search(s, idx, nocase = 1,
+                            stopindex = END)
+            print(idx)
+            if not idx: break
+             
+            lastidx = '% s+% dc' % (idx, len(s))
  
+            text.delete(idx, lastidx)
+            text.insert(idx, r)
+ 
+            lastidx = '% s+% dc' % (idx, len(r))
+            text.tag_add('found', idx, lastidx)
+            idx = lastidx
+                 
                  
 l = ln.LineNumbers(root, text, width=1)
 l.pack(side=tk.RIGHT)
 text.pack(side=tk.RIGHT, expand=1)
 Find.config(command = find)
 findExactButton.config(command = findExact)
+replaceButton.config(command = replace)
 root.mainloop()
